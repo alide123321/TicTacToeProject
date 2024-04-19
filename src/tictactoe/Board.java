@@ -1,6 +1,8 @@
 package tictactoe;
 
-public class Board {
+import java.io.Serializable;
+
+public class Board implements Serializable {
    private char[][] board = new char[3][3];
 
    protected Board() {
@@ -33,6 +35,11 @@ public class Board {
    // just returns the char at the position
    protected char getChar(int i, int j) {
       return board[i][j];
+   }
+
+   // returns the board
+   protected char[][] getBoard() {
+      return board;
    }
 
    // validates position
