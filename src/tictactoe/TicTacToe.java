@@ -41,13 +41,17 @@ public class TicTacToe implements Serializable {
     * @return True if the game has a winner after each move
     * @throws UsedSpacesException        if the position is already used
     * @throws NotAValidPositionException if not 1 <= pos <= 9
+    * @throws GameOverException          if the game is already over
+    * @throws UnableToPlayException      if there is already a winner and the game
+    *                                    is not over
     */
-   public boolean Play(int pos) throws UsedSpacesException, NotAValidPositionException {
+   public boolean Play(int pos)
+         throws UsedSpacesException, NotAValidPositionException, GameOverException, UnableToPlayException {
 
-      if (CheckWinner() != ' ' || isGameOver()) {
-         System.out.println("Game Over there, Can't play anymore! Please End the game first.");
-         return true;
-      }
+      if (isGameOver())
+         throw new GameOverException("Game is already over");
+      if (CheckWinner() != ' ')
+         throw new UnableToPlayException("There is already a winner Please End the game");
 
       B.Play(Player1Turn, pos);
       Player1Turn = !Player1Turn;
@@ -155,11 +159,9 @@ public class TicTacToe implements Serializable {
          OOS.flush();
       } catch (FileNotFoundException e) {
 
-         System.out.println("Error: File not found. " + e.getMessage());
          throw new UnableToSaveGameException("Error: File not found. " + e.getMessage());
       } catch (IOException e) {
 
-         System.out.println("General I/O exception: " + e.getMessage());
          throw new UnableToSaveGameException("General I/O exception: " + e.getMessage());
       }
 
@@ -244,6 +246,8 @@ public class TicTacToe implements Serializable {
 
       }
 
+      GameOver = true;
+
    }
 
    /**
@@ -272,14 +276,9 @@ public class TicTacToe implements Serializable {
     */
    public void printBoard() {
 
-      int pos = 1;
       for (int i = 0; i < 3; i++) {
          for (int j = 0; j < 3; j++) {
-            try {
-               System.out.print(B.getChar(pos++));
-            } catch (NotAValidPositionException e) {
-               System.err.println("INTERNAL ERROR: INVALID POSITION");
-            }
+            System.out.print(B.getChar(i, j));
             if (j < 2)
                System.out.print("|");
          }
@@ -296,6 +295,19 @@ public class TicTacToe implements Serializable {
     */
    public char[][] getBoard() {
       return B.getBoard();
+   }
+
+   /**
+    * Returns the character at the specified position on the TicTacToe board.
+    *
+    * @param pos the position on the board (1-9)
+    * @return the character at the specified position
+    */
+   public char getChar(int pos) throws NotAValidPositionException {
+      if (pos < 1 || pos > 9)
+         throw new NotAValidPositionException();
+
+      return B.getChar((pos % 3), ((pos - 1) % 3));
    }
 
    /**
