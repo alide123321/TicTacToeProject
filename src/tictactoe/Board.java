@@ -33,8 +33,11 @@ public class Board implements Serializable {
    }
 
    // just returns the char at the position
-   protected char getChar(int i, int j) {
-      return board[i][j];
+   protected char getChar(int pos) throws NotAValidPositionException {
+      if (pos < 1 || pos > 9)
+         throw new NotAValidPositionException();
+
+      return board[(pos % 3)][((pos - 1) % 3)];
    }
 
    // returns the board

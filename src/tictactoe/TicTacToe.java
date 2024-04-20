@@ -272,9 +272,14 @@ public class TicTacToe implements Serializable {
     */
    public void printBoard() {
 
+      int pos = 1;
       for (int i = 0; i < 3; i++) {
          for (int j = 0; j < 3; j++) {
-            System.out.print(B.getChar(i, j));
+            try {
+               System.out.print(B.getChar(pos++));
+            } catch (NotAValidPositionException e) {
+               System.err.println("INTERNAL ERROR: INVALID POSITION");
+            }
             if (j < 2)
                System.out.print("|");
          }
