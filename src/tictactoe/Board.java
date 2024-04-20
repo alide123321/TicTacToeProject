@@ -32,17 +32,32 @@ public class Board implements Serializable {
 
    }
 
-   // just returns the char at the position
+   /**
+    * Returns the character at the specified position on the board.
+    *
+    * @param i the row index of the position
+    * @param j the column index of the position
+    * @return the character at the specified position
+    */
    protected char getChar(int i, int j) {
       return board[i][j];
    }
 
-   // returns the board
+   /**
+    * Returns the current state of the game board.
+    *
+    * @return a 2D char array representing the game board
+    */
    protected char[][] getBoard() {
       return board;
    }
 
-   // validates position
+   /**
+    * Checks if the given position on the board is valid.
+    *
+    * @param pos The position to check.
+    * @return true if the position is valid, false otherwise.
+    */
    protected boolean ValidPosition(int pos) {
       return (board[(pos % 3)][((pos - 1) % 3)] == ' ');
    }

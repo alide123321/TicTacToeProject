@@ -20,6 +20,12 @@ public class TicTacToe implements Serializable {
    private String Player1Name;
    private String Player2Name;
 
+   /**
+    * Constructs a new TicTacToe game with the specified player names.
+    * 
+    * @param player1Name the name of player 1
+    * @param player2Name the name of player 2
+    */
    public TicTacToe(String player1Name, String player2Name) {
       B = new Board();
       Player1Name = player1Name;
@@ -28,10 +34,20 @@ public class TicTacToe implements Serializable {
       GameOver = false;
    }
 
+   /**
+    * Constructs a new TicTacToe object with the specified player name.
+    * The second player is set to the computer.
+    *
+    * @param player1Name the name of the first player
+    */
    public TicTacToe(String player1Name) {
       this(player1Name, COMPUTERNNAME);
    }
 
+   /**
+    * Constructs a new TicTacToe object with default player names.
+    * The second player is set to the computer.
+    */
    public TicTacToe() {
       this(DEFAULTPLAYERNAME, COMPUTERNNAME);
    }
