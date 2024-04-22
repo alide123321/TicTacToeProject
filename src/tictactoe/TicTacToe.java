@@ -1,3 +1,12 @@
+/*
+Ali Aldaghishy
+ata5388@psu.edu
+
+I declare that what has been written in this work has been written by me and that no part has been copied from scientific publications,
+the Internet or from other online sources or was already presented in the academic field by me or by other students.
+
+
+*/
 package tictactoe;
 
 import java.io.FileInputStream;
@@ -77,15 +86,8 @@ public class TicTacToe implements Serializable {
 
       if (Player2Name.equals(COMPUTERNNAME)) {
 
-         int playPOS;
-         do {
-
-            playPOS = (int) (Math.random() * 9) + 1;
-
-         } while (!B.ValidPosition(playPOS));
-
-         B.Play(Player1Turn, playPOS);
          Player1Turn = !Player1Turn;
+         B.Play((!Player1Turn), this.computerPlay());
       }
 
       return CheckWinner() != ' ';
@@ -396,6 +398,17 @@ public class TicTacToe implements Serializable {
     */
    public boolean isPlayer1Turn() {
       return Player1Turn;
+   }
+
+   private int computerPlay() {
+      int playPOS;
+      do {
+
+         playPOS = (int) (Math.random() * 9) + 1;
+
+      } while (!B.ValidPosition(playPOS));
+
+      return playPOS;
    }
 
 }
