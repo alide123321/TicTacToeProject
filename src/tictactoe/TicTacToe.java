@@ -19,8 +19,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class TicTacToe implements Serializable {
-   private final static String COMPUTERNNAME = "COMPUTER";
-   private final static String DEFAULTPLAYERNAME = "Player 1";
+   public final static String COMPUTERNNAME = "COMPUTER";
+   public final static String DEFAULTPLAYERNAME = "Player 1";
    private final static String FILENAME = "TicTacToeGameSave.ser";
    private static HashMap<String, int[]> ScoreList = new HashMap<String, int[]>(); // [Wins, Ties, Losses]
    private Board B;
@@ -36,6 +36,13 @@ public class TicTacToe implements Serializable {
     * @param player2Name the name of player 2
     */
    public TicTacToe(String player1Name, String player2Name) {
+      if (player1Name.equals("")) {
+         player1Name = DEFAULTPLAYERNAME;
+      }
+      if (player2Name.equals("")) {
+         player2Name = DEFAULTPLAYERNAME;
+      }
+
       B = new Board();
       Player1Name = player1Name;
       Player2Name = player2Name;
@@ -70,37 +77,37 @@ public class TicTacToe implements Serializable {
     * @throws UnableToPlayException      if there is already a winner and the game
     *                                    is not over
     */
-   public boolean Play(int pos)
+   public boolean play(int pos)
          throws UsedSpacesException, NotAValidPositionException, GameOverException, UnableToPlayException {
 
       if (isGameOver())
          throw new GameOverException("Game is already over");
-      if (CheckWinner() != ' ')
+      if (checkWinner() != null)
          throw new UnableToPlayException("There is already a winner Please End the game");
 
-      B.Play(Player1Turn, pos);
+      B.playBoard(Player1Turn, pos);
       Player1Turn = !Player1Turn;
 
-      if (CheckWinner() != ' ')
+      if (checkWinner() != null)
          return true;
 
       if (Player2Name.equals(COMPUTERNNAME)) {
 
+         B.playBoard(Player1Turn, this.computerPlay());
          Player1Turn = !Player1Turn;
-         B.Play((!Player1Turn), this.computerPlay());
       }
 
-      return CheckWinner() != ' ';
+      return (checkWinner() != null);
 
    }
 
    /**
-    * @return the character showing the winner ('X' or 'O'),
-    *         or (' ') if no winner yet,
+    * @return the Character showing the winner ('X' or 'O'),
+    *         or (null) if no winner yet,
     *         or ('T') if it's a tie
     */
-   public char CheckWinner() {
-      char winner = ' ';
+   public Character checkWinner() {
+      Character winner = null;
 
       // ? There has to be a better way of doing these checks
 
@@ -118,7 +125,7 @@ public class TicTacToe implements Serializable {
       if ((B.getChar(0, 2) == B.getChar(1, 1)) && (B.getChar(1, 1) == B.getChar(2, 0)) && (B.getChar(0, 2) != ' '))
          winner = B.getChar(0, 2);
 
-      if (winner == ' ') {
+      if (winner == null) {
 
          boolean tie = true;
 
@@ -169,7 +176,7 @@ public class TicTacToe implements Serializable {
     * 
     * @throws UnableToSaveGameException if there is an error while saving the game
     */
-   public void SaveGame() throws UnableToSaveGameException {
+   public void saveGame() throws UnableToSaveGameException {
       // Try to write the cart object to a file
       try (ObjectOutputStream OOS = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
 
@@ -197,7 +204,7 @@ public class TicTacToe implements Serializable {
       if (isGameOver())
          throw new GameOverException("Game is already over");
 
-      char winner = CheckWinner();
+      char winner = checkWinner();
 
       int[] P1scores;
       int[] P2scores;
@@ -283,7 +290,7 @@ public class TicTacToe implements Serializable {
     * Player 1,
     * and the game over flag will be set to false.
     */
-   public void clearBoard() {
+   public void restartGame() {
       B = new Board();
       Player1Turn = true;
       GameOver = false;
@@ -296,7 +303,7 @@ public class TicTacToe implements Serializable {
 
       for (int i = 0; i < 3; i++) {
          for (int j = 0; j < 3; j++) {
-            System.out.print(B.getChar(i, j));
+            System.out.print((B.getChar(i, j) == ' ' ? ((i * 3) + (j + 1)) : String.valueOf(B.getChar(i, j))));
             if (j < 2)
                System.out.print("|");
          }
@@ -325,7 +332,7 @@ public class TicTacToe implements Serializable {
       if (pos < 1 || pos > 9)
          throw new NotAValidPositionException();
 
-      return B.getChar((pos % 3), ((pos - 1) % 3));
+      return B.getChar(((pos - 1) % 3), ((pos - 1) % 3));
    }
 
    /**
@@ -400,6 +407,12 @@ public class TicTacToe implements Serializable {
       return Player1Turn;
    }
 
+   /**
+    * Generates a random play position for the computer player in the Tic Tac Toe
+    * game.
+    * 
+    * @return The randomly generated play position.
+    */
    private int computerPlay() {
       int playPOS;
       do {
