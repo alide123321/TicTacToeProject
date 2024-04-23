@@ -117,14 +117,14 @@ public class Main {
 			System.out.printf("%nGame has started! [it will automatically save after each turn]%n");
 			System.out.print("Player 1 [X]: ");
 			try {
-				game.getScoreArr(Player1, true);
+				TicTacToe.getScoreArr(Player1, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 1 not found.");
 			}
 			System.out.printf("Player 2 [O]: ");
 			try {
-				game.getScoreArr(Player2, true);
+				TicTacToe.getScoreArr(Player2, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 2 not found.");

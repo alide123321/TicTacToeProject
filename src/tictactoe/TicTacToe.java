@@ -22,7 +22,7 @@ public class TicTacToe implements Serializable {
    public final static String COMPUTERNNAME = "COMPUTER";
    public final static String DEFAULTPLAYERNAME = "Player 1";
    private final static String FILENAME = "TicTacToeGameSave.ser";
-   private HashMap<String, int[]> ScoreList; // [Wins, Ties, Losses]
+   private static HashMap<String, int[]> ScoreList; // [Wins, Ties, Losses]
    private Board B;
    private boolean GameOver;
    private boolean Player1Turn;
@@ -176,6 +176,7 @@ public class TicTacToe implements Serializable {
       try (ObjectInputStream OIS = new ObjectInputStream(new FileInputStream(FILENAME))) {
 
          game = (TicTacToe) OIS.readObject();
+         TicTacToe.ScoreList = (HashMap<String, int[]>) OIS.readObject();
       } catch (FileNotFoundException e) {
 
          throw new UnableToLoadGameException("Error: File not found. " + e.getMessage());
@@ -200,6 +201,7 @@ public class TicTacToe implements Serializable {
       try (ObjectOutputStream OOS = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
 
          OOS.writeObject(this);
+         OOS.writeObject(ScoreList);
          OOS.flush();
       } catch (FileNotFoundException e) {
 
@@ -378,7 +380,7 @@ public class TicTacToe implements Serializable {
     *
     * @return the score list as a HashMap with String keys and int[] values.
     */
-   public HashMap<String, int[]> getScoreList() {
+   public static HashMap<String, int[]> getScoreList() {
       return ScoreList;
    }
 
@@ -390,7 +392,7 @@ public class TicTacToe implements Serializable {
     * @return an array of integers representing the scores of the player
     * @throws PlayerNotFoundException if the player is not found in the score list
     */
-   public int[] getScoreArr(String player, boolean print) throws PlayerNotFoundException {
+   public static int[] getScoreArr(String player, boolean print) throws PlayerNotFoundException {
       if (!ScoreList.containsKey(player)) {
          if (print)
             System.out.println("Player not found in the score list");
