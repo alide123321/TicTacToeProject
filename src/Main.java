@@ -117,14 +117,14 @@ public class Main {
 			System.out.printf("%nGame has started! [it will automatically save after each turn]%n");
 			System.out.print("Player 1 [X]: ");
 			try {
-				TicTacToe.getScoreArr(Player1, true);
+				game.getScoreArr(Player1, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 1 not found.");
 			}
 			System.out.printf("Player 2 [O]: ");
 			try {
-				TicTacToe.getScoreArr(Player2, true);
+				game.getScoreArr(Player2, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 2 not found.");
@@ -136,13 +136,6 @@ public class Main {
 
 			System.out.println("Would you like to play again? [Y/N]");
 			char playAgainChoice = sc.next().charAt(0);
-
-			try {
-				game.saveGame();
-			} catch (UnableToSaveGameException e) {
-
-				System.out.println("Unable to save game. Game will not be saved.");
-			}
 
 			if (Character.toUpperCase(playAgainChoice) == 'Y') {
 				playAgain = true;

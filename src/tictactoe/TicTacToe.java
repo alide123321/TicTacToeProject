@@ -22,7 +22,7 @@ public class TicTacToe implements Serializable {
    public final static String COMPUTERNNAME = "COMPUTER";
    public final static String DEFAULTPLAYERNAME = "Player 1";
    private final static String FILENAME = "TicTacToeGameSave.ser";
-   private static HashMap<String, int[]> ScoreList; // [Wins, Ties, Losses]
+   private static HashMap<String, int[]> ScoreList = new HashMap<String, int[]>(); // [Wins, Ties, Losses]
    private Board B;
    private boolean GameOver;
    private boolean Player1Turn;
@@ -43,29 +43,17 @@ public class TicTacToe implements Serializable {
          player2Name = DEFAULTPLAYERNAME;
       }
 
-      ScoreList = new HashMap<String, int[]>(); // [Wins, Ties, Losses]
       B = new Board();
       Player1Name = player1Name;
       Player2Name = player2Name;
       Player1Turn = true;
       GameOver = false;
 
-      int P1scores[];
-      int P2scores[];
+      if (!ScoreList.containsKey(Player1Name))
+         ScoreList.put(Player1Name, new int[] { 0, 0, 0 });
 
-      try {
-         P1scores = getScoreArr(Player1Name, false);
-      } catch (PlayerNotFoundException e) {
-         P1scores = new int[] { 0, 0, 0 };
-      }
-      try {
-         P2scores = getScoreArr(Player2Name, false);
-      } catch (PlayerNotFoundException e) {
-         P2scores = new int[] { 0, 0, 0 };
-      }
-
-      ScoreList.put(Player1Name, P1scores);
-      ScoreList.put(Player2Name, P2scores);
+      if (!ScoreList.containsKey(Player2Name))
+         ScoreList.put(Player2Name, new int[] { 0, 0, 0 });
 
    }
 
@@ -176,7 +164,8 @@ public class TicTacToe implements Serializable {
       try (ObjectInputStream OIS = new ObjectInputStream(new FileInputStream(FILENAME))) {
 
          game = (TicTacToe) OIS.readObject();
-         TicTacToe.ScoreList = (HashMap<String, int[]>) OIS.readObject();
+         ScoreList = (HashMap<String, int[]>) OIS.readObject();
+
       } catch (FileNotFoundException e) {
 
          throw new UnableToLoadGameException("Error: File not found. " + e.getMessage());
@@ -380,7 +369,7 @@ public class TicTacToe implements Serializable {
     *
     * @return the score list as a HashMap with String keys and int[] values.
     */
-   public static HashMap<String, int[]> getScoreList() {
+   public HashMap<String, int[]> getScoreList() {
       return ScoreList;
    }
 
@@ -392,7 +381,7 @@ public class TicTacToe implements Serializable {
     * @return an array of integers representing the scores of the player
     * @throws PlayerNotFoundException if the player is not found in the score list
     */
-   public static int[] getScoreArr(String player, boolean print) throws PlayerNotFoundException {
+   public int[] getScoreArr(String player, boolean print) throws PlayerNotFoundException {
       if (!ScoreList.containsKey(player)) {
          if (print)
             System.out.println("Player not found in the score list");
