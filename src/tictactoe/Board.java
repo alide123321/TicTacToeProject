@@ -14,6 +14,12 @@ import java.io.Serializable;
 public class Board implements Serializable {
    private char[][] board = new char[3][3];
 
+   /**
+    * The Board class represents the game board for Tic-Tac-Toe.
+    * It provides methods to initialize the board and manipulate its state.
+    * 
+    * @author: Ali Aldaghishy
+    */
    protected Board() {
       for (int i = 0; i < 3; i++) {
          for (int j = 0; j < 3; j++) {
@@ -23,6 +29,7 @@ public class Board implements Serializable {
    }
 
    /**
+    * @author: Ali Aldaghishy
     * @param player1 if it's player 1's turn then true
     * @param pos     the position on the board where the move is to be played (1-9)
     * @throws UsedSpacesException        if the position is already used
@@ -44,6 +51,7 @@ public class Board implements Serializable {
    /**
     * Returns the character at the specified position on the board.
     *
+    * @author: Ali Aldaghishy
     * @param i the row index of the position
     * @param j the column index of the position
     * @return the character at the specified position
@@ -55,6 +63,7 @@ public class Board implements Serializable {
    /**
     * Returns the current state of the game board.
     *
+    * @author: Ali Aldaghishy
     * @return a 2D char array representing the game board
     */
    protected char[][] getBoard() {
@@ -64,6 +73,7 @@ public class Board implements Serializable {
    /**
     * Checks if the given position on the board is valid.
     *
+    * @author: Ali Aldaghishy
     * @param pos The position to check.
     * @return true if the position is valid, false otherwise.
     */

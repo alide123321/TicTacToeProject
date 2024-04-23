@@ -12,6 +12,12 @@ package tictactoe;
 
 public class GameOverException extends Exception {
 
+   /**
+    * Constructs a new GameOverException with the specified detail message.
+    *
+    * @author: Ali Aldaghishy
+    * @param message the detail message
+    */
    public GameOverException(String message) {
       super(message);
    }

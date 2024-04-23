@@ -14,6 +14,15 @@ package tictactoe;
  * is already used in the Tic Tac Toe game.
  */
 public final class UsedSpacesException extends Exception {
+
+   /**
+    * Constructs a new UsedSpacesException with a default error message.
+    * The error message suggests using the `.PrintBoard()` method to see the
+    * available positions.
+    * 
+    * @author: Ali Aldaghishy
+    */
+
    public UsedSpacesException() {
       super("That space is already used try a different position (Hint: Use the .PrintBoard() method to see what's available)");
    }

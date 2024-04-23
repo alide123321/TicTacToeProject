@@ -11,7 +11,14 @@ package tictactoe;
 
 public class UnableToSaveGameException extends Exception {
 
+   /**
+    * Constructs a new UnableToSaveGameException with the specified detail message.
+    *
+    * @author: Ali Aldaghishy
+    * @param message the detail message
+    */
    public UnableToSaveGameException(String message) {
       super(message);
+
    }
 }

@@ -11,6 +11,11 @@ package tictactoe;
 
 public class PlayerNotFoundException extends Exception {
 
+   /**
+    * This exception is thrown when a player is not found in the Tic Tac Toe game.
+    * 
+    * @author: Ali Aldaghishy
+    */
    public PlayerNotFoundException(String message) {
       super(message);
    }

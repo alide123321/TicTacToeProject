@@ -11,7 +11,14 @@ package tictactoe;
 
 public class UnableToPlayException extends Exception {
 
+   /**
+    * Constructs a new UnableToPlayException with the specified detail message.
+    *
+    * @author: Ali Aldaghishy
+    * @param message the detail message
+    */
    public UnableToPlayException(String message) {
       super(message);
+
    }
 }

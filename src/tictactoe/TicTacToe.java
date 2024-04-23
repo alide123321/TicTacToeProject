@@ -32,6 +32,7 @@ public class TicTacToe implements Serializable {
    /**
     * Constructs a new TicTacToe game with the specified player names.
     * 
+    * @author: Ali Aldaghishy
     * @param player1Name the name of player 1
     * @param player2Name the name of player 2
     */
@@ -61,6 +62,7 @@ public class TicTacToe implements Serializable {
     * Constructs a new TicTacToe object with the specified player name.
     * The second player is set to the computer.
     *
+    * @author: Ali Aldaghishy
     * @param player1Name the name of the first player
     */
    public TicTacToe(String player1Name) {
@@ -70,12 +72,16 @@ public class TicTacToe implements Serializable {
    /**
     * Constructs a new TicTacToe object with default player names.
     * The second player is set to the computer.
+    * 
+    * @author: Ali Aldaghishy
     */
    public TicTacToe() {
       this(DEFAULTPLAYERNAME, COMPUTERNNAME);
    }
 
    /**
+    * 
+    * @author: Ali Aldaghishy
     * @param pos The position on the board.
     * @return True if the game has a winner after each move
     * @throws UsedSpacesException        if the position is already used
@@ -205,6 +211,7 @@ public class TicTacToe implements Serializable {
    /**
     * Ends the game and updates the scores based on the winner.
     * 
+    * @author: Ali Aldaghishy
     * @param printScores a boolean value indicating whether to print the scores
     *                    after the game ends
     * @throws GameOverException if the game is already over
@@ -280,6 +287,7 @@ public class TicTacToe implements Serializable {
    /**
     * Checks if the game is over.
     * 
+    * @author: Ali Aldaghishy
     * @return true if the game is over, false otherwise.
     */
    public boolean isGameOver() {
@@ -318,6 +326,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the current state of the game board.
     *
+    * @author: Ali Aldaghishy
     * @return a 2D char array representing the game board
     */
    public char[][] getBoard() {
@@ -327,6 +336,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the character at the specified position on the TicTacToe board.
     *
+    * @author: Ali Aldaghishy
     * @param pos the position on the board (1-9)
     * @return the character at the specified position
     */
@@ -340,6 +350,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the name of Player 1.
     *
+    * @author: Ali Aldaghishy
     * @return the name of Player 1
     */
    public String getPlayer1Name() {
@@ -349,6 +360,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the name of player 2.
     *
+    * @author: Ali Aldaghishy
     * @return the name of player 2
     */
    public String getPlayer2Name() {
@@ -358,6 +370,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the current player's turn.
     * 
+    * @author: Ali Aldaghishy
     * @return The character representing the current player's turn ('X' or 'O').
     */
    public char getPlayerTurn() {
@@ -367,6 +380,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the score list.
     *
+    * @author: Ali Aldaghishy
     * @return the score list as a HashMap with String keys and int[] values.
     */
    public static HashMap<String, int[]> getScoreList() {
@@ -403,6 +417,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns a boolean value indicating whether it is currently Player 1's turn.
     *
+    * @author: Ali Aldaghishy
     * @return true if it is Player 1's turn, false otherwise
     */
    public boolean isPlayer1Turn() {
@@ -412,6 +427,7 @@ public class TicTacToe implements Serializable {
    /**
     * Generates a random play position for the computer player in the Tic Tac Toe
     * game.
+    * 
     * 
     * @return The randomly generated play position.
     */

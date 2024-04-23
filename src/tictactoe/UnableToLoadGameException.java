@@ -11,6 +11,12 @@ package tictactoe;
 
 public class UnableToLoadGameException extends Exception {
 
+   /**
+    * Constructs a new UnableToLoadGameException with the specified detail message.
+    *
+    * @author: Ali Aldaghishy
+    * @param message the detail message
+    */
    public UnableToLoadGameException(String message) {
       super(message);
    }
