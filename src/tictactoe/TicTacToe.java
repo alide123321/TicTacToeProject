@@ -389,7 +389,7 @@ public class TicTacToe implements Serializable {
       int[] scores = ScoreList.get(player);
 
       if (print)
-         System.out.printf("%s: (%d - %d - %d) \n",
+         System.out.printf("%s: [%d - %d - %d] \n",
                player,
                scores[0],
                scores[1],

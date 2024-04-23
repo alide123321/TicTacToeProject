@@ -63,6 +63,12 @@ public class Main {
 			} while (GameModeChoice < 1 || GameModeChoice > 4);
 
 			if (GameModeChoice == 4) {
+				try {
+					game.saveGame();
+				} catch (UnableToSaveGameException e) {
+
+					System.out.println("Unable to save game. Game will not be saved.");
+				}
 				System.out.println("Goodbye!");
 				System.exit(0);
 			}
@@ -93,7 +99,7 @@ public class Main {
 
 						}
 
-						if (Character.toUpperCase(continueGameChoice) == 'N') {
+						if (Character.toUpperCase(continueGameChoice) == 'R') {
 							game.restartGame();
 						}
 
@@ -107,25 +113,42 @@ public class Main {
 			}
 
 			System.out.printf("%nGame has started! [it will automatically save after each turn]%n");
-			System.out.printf("Player 1: %s%n", game.getPlayer1Name());
-			System.out.printf("Player 2: %s%n%n", game.getPlayer2Name());
+			System.out.print("Player 1 [X]: ");
+			try {
+				TicTacToe.getScoreArr(Player1, true);
+			} catch (PlayerNotFoundException e) {
+
+				System.out.println("Player 1 not found.");
+			}
+			System.out.printf("Player 2 [O]: ");
+			try {
+				TicTacToe.getScoreArr(Player2, true);
+			} catch (PlayerNotFoundException e) {
+
+				System.out.println("Player 2 not found.");
+			}
+			System.out.println();
 			game.printBoard();
 
 			playGame(game);
 
 			System.out.println("Would you like to play again? [Y/N]");
 			char playAgainChoice = sc.next().charAt(0);
+
+			try {
+				game.saveGame();
+			} catch (UnableToSaveGameException e) {
+
+				System.out.println("Unable to save game. Game will not be saved.");
+			}
+
 			if (Character.toUpperCase(playAgainChoice) == 'Y') {
 				playAgain = true;
+
 				game.restartGame();
 			} else {
 				playAgain = false;
-				try {
-					game.saveGame();
-				} catch (UnableToSaveGameException e) {
 
-					System.out.println("Unable to save game. Game will not be saved.");
-				}
 			}
 		} while (playAgain);
 
