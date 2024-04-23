@@ -52,6 +52,8 @@ public class Main {
 				if (GameModeChoice == 3) {
 					try {
 						game = TicTacToe.loadGame();
+						Player1 = game.getPlayer1Name();
+						Player2 = game.getPlayer2Name();
 						System.out.println("Game loaded!");
 					} catch (UnableToLoadGameException e) {
 						System.out.println("No saved game found. Please select another option.");
@@ -115,14 +117,14 @@ public class Main {
 			System.out.printf("%nGame has started! [it will automatically save after each turn]%n");
 			System.out.print("Player 1 [X]: ");
 			try {
-				TicTacToe.getScoreArr(Player1, true);
+				game.getScoreArr(Player1, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 1 not found.");
 			}
 			System.out.printf("Player 2 [O]: ");
 			try {
-				TicTacToe.getScoreArr(Player2, true);
+				game.getScoreArr(Player2, true);
 			} catch (PlayerNotFoundException e) {
 
 				System.out.println("Player 2 not found.");
