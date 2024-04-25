@@ -1,7 +1,7 @@
 
 /*
-Ali Aldaghishy
-ata5388@psu.edu
+Ali Aldaghishy - ata5388@psu.edu
+Yasir Almutairi - yta5032@psu.edu
 
 I declare that what has been written in this work has been written by me and that no part has been copied from scientific publications,
 the Internet or from other online sources or was already presented in the academic field by me or by other students.
@@ -30,7 +30,7 @@ public class Main {
 
 			System.out.println("Welcome to Tic Tac Toe! ");
 			do {
-				System.out.println("[Please a number corresponding to the option you would like to choose]");
+				System.out.println("[Please enter a number corresponding to the option you would like to choose]");
 				System.out.println("1) SinglePlayer");
 				System.out.println("2) MultiPlayer");
 				System.out.println("3) Load Game");
@@ -46,7 +46,8 @@ public class Main {
 
 				} catch (InputMismatchException e) {
 					System.out.println("[Invalid input - Please enter a number between 1 and 4]");
-					sc.nextLine(); // Clear the input buffer
+					// clear the input buffer
+					sc.nextLine();
 				}
 
 				if (GameModeChoice == 3) {
@@ -91,24 +92,25 @@ public class Main {
 
 				do {
 					try {
-						System.out.println("Would you like to restart the game? [R/N]");
+						System.out.println("Would you like to restart the game? [Y/N]");
 
 						char continueGameChoice = sc.next().charAt(0);
 
-						if (Character.toUpperCase(continueGameChoice) != 'R'
+						if (Character.toUpperCase(continueGameChoice) != 'Y'
 								&& Character.toUpperCase(continueGameChoice) != 'N') {
 							throw new InputMismatchException();
 
 						}
 
-						if (Character.toUpperCase(continueGameChoice) == 'R') {
+						if (Character.toUpperCase(continueGameChoice) == 'Y') {
 							game.restartGame();
 						}
 
 						break;
 					} catch (InputMismatchException e) {
-						System.out.println("Invalid input. Please enter 'R' or 'N'.");
-						sc.nextLine(); // Clear the input buffer
+						System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+						// clear the input buffer
+						sc.nextLine();
 					}
 				} while (true);
 
@@ -183,7 +185,8 @@ public class Main {
 			} catch (InputMismatchException e) {
 
 				System.out.println("Invalid input. Please enter a number between 1 and 9.");
-				sc.nextLine(); // Clear the input buffer
+				// clear the input buffer
+				sc.nextLine();
 			} catch (UnableToSaveGameException e) {
 
 				System.out.println("Invalid input. Please enter a number between 1 and 9.");

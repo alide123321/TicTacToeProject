@@ -1,6 +1,6 @@
 /*
-Ali Aldaghishy
-ata5388@psu.edu
+Ali Aldaghishy - ata5388@psu.edu
+Yasir Almutairi - yta5032@psu.edu
 
 I declare that what has been written in this work has been written by me and that no part has been copied from scientific publications,
 the Internet or from other online sources or was already presented in the academic field by me or by other students.
@@ -115,14 +115,13 @@ public class TicTacToe implements Serializable {
    }
 
    /**
+    * @author: Yasir Almutairi
     * @return the Character showing the winner ('X' or 'O'),
     *         or (null) if no winner yet,
     *         or ('T') if it's a tie
     */
    public Character checkWinner() {
       Character winner = null;
-
-      // ? There has to be a better way of doing these checks
 
       for (int i = 0; i < 3; i++) {
          if ((B.getChar(i, 0) == B.getChar(i, 1)) && (B.getChar(i, 1) == B.getChar(i, 2)) && (B.getChar(i, 0) != ' '))
@@ -161,12 +160,13 @@ public class TicTacToe implements Serializable {
    /**
     * Loads a Tic-Tac-Toe game from a file.
     * 
+    * @author: Yasir Almutairi
     * @return The loaded TicTacToe game.
     * @throws UnableToLoadGameException If there is an error loading the game.
     */
    public static TicTacToe loadGame() throws UnableToLoadGameException {
       TicTacToe game = null;
-      // Try to read the cart object from a file
+      // Try to read the tictactoe object from a file
       try (ObjectInputStream OIS = new ObjectInputStream(new FileInputStream(FILENAME))) {
 
          game = (TicTacToe) OIS.readObject();
@@ -189,10 +189,11 @@ public class TicTacToe implements Serializable {
    /**
     * Saves the current game state to a file.
     * 
+    * @author: Yasir Almutairi
     * @throws UnableToSaveGameException if there is an error while saving the game
     */
    public void saveGame() throws UnableToSaveGameException {
-      // Try to write the cart object to a file
+      // Try to write the tictactoe object to a file
       try (ObjectOutputStream OOS = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
 
          OOS.writeObject(this);
@@ -299,6 +300,8 @@ public class TicTacToe implements Serializable {
     * After calling this method, the board will be empty, the turn will be set to
     * Player 1,
     * and the game over flag will be set to false.
+    *
+    * @author: Yasir Almutairi
     */
    public void restartGame() {
       B = new Board();
@@ -308,6 +311,8 @@ public class TicTacToe implements Serializable {
 
    /**
     * Prints the current state of the Tic-Tac-Toe board.
+    *
+    * @author: Yasir Almutairi
     */
    public void printBoard() {
 
@@ -380,7 +385,7 @@ public class TicTacToe implements Serializable {
    /**
     * Returns the score list.
     *
-    * @author: Ali Aldaghishy
+    * @author: Yasir Almutairi
     * @return the score list as a HashMap with String keys and int[] values.
     */
    public static HashMap<String, int[]> getScoreList() {
@@ -390,6 +395,7 @@ public class TicTacToe implements Serializable {
    /**
     * Retrieves the score list for a given player.
     *
+    * @author: Yasir Almutairi
     * @param player the name of the player
     * @param print  a boolean value indicating whether to print the score list
     * @return an array of integers representing the scores of the player
@@ -428,7 +434,7 @@ public class TicTacToe implements Serializable {
     * Generates a random play position for the computer player in the Tic Tac Toe
     * game.
     * 
-    * 
+    * @author: Yasir Almutairi
     * @return The randomly generated play position.
     */
    private int computerPlay() {
