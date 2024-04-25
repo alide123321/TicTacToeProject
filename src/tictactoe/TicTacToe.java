@@ -170,7 +170,7 @@ public class TicTacToe implements Serializable {
       try (ObjectInputStream OIS = new ObjectInputStream(new FileInputStream(FILENAME))) {
 
          game = (TicTacToe) OIS.readObject();
-         ScoreList = (HashMap<String, int[]>) OIS.readObject();
+         TicTacToe.ScoreList = (HashMap<String, int[]>) OIS.readObject();
 
       } catch (FileNotFoundException e) {
 
