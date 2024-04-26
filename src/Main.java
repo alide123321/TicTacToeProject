@@ -8,8 +8,8 @@ the Internet or from other online sources or was already presented in the academ
 
 This program shows the implementation of the project ("tictactoe" package).
 
-
 */
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -192,6 +192,5 @@ public class Main {
 				System.out.println("Invalid input. Please enter a number between 1 and 9.");
 			}
 		}
-
 	}
 }
