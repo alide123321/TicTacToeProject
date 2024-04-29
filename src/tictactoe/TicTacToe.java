@@ -212,7 +212,7 @@ public class TicTacToe implements Serializable {
     * Ends the game and updates the scores based on the winner.
     * 
     * @author: Ali Aldaghishy
-    * @param printScores a boolean value indicating whether to print the scores
+    * @param print a boolean value indicating whether to print the scores
     *                    after the game ends
     * @throws GameOverException if the game is already over
     */
